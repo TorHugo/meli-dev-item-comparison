@@ -1,0 +1,129 @@
+package dev.com.item.compartison.infrastructure.gateway
+
+import dev.com.item.compartison.domain.entity.ProductDomain
+import dev.com.item.compartison.domain.enums.SortDirectionEnum
+import dev.com.item.compartison.domain.exception.template.GatewayException
+import dev.com.item.compartison.domain.gateway.ProductGateway
+import dev.com.item.compartison.domain.utils.PageInfoGenericUtils
+import dev.com.item.compartison.domain.utils.PaginationUtils
+import dev.com.item.compartison.infrastructure.adapter.LoadingProductAdapter
+import jakarta.annotation.PostConstruct
+import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Component
+
+@Component
+class ProductGatewayImpl(
+    private val loadingProductAdapter: LoadingProductAdapter
+): ProductGateway {
+
+    private var products: List<ProductDomain> = emptyList()
+
+    @PostConstruct
+    fun load() {
+        products = loadingProductAdapter.load()
+    }
+
+    private val logger = LoggerFactory.getLogger(ProductGatewayImpl::class.java)
+
+
+    override fun findAllByPage(pageable: PaginationUtils): PageInfoGenericUtils<ProductDomain> {
+        try {
+            return paginateAndSortList(products, pageable)
+        } catch (exception: Exception) {
+            // Adicionar a exceção ao log ajuda na depuração.
+            logger.error("c=ProductGatewayImpl m=findAllByPage() s=Exception message=${exception.message}", exception)
+            throw GatewayException("gateway.error")
+        }
+    }
+
+    override fun findByProductId(productId: Long): ProductDomain? {
+        try {
+            return products.find { it.identifier == productId }
+        } catch (exception: Exception) {
+            // Adicionar a exceção ao log ajuda na depuração.
+            logger.error("c=ProductGatewayImpl m=findByProductId() s=Exception message=${exception.message}", exception)
+            throw GatewayException("gateway.error")
+        }
+    }
+
+    /**
+     * Simulates JPA pagination and sorting on an in-memory list.
+     * This method first sorts the list based on the provided criteria and then extracts
+     * the requested page.
+     *
+     * @param sourceList The complete list of items to be paginated.
+     * @param pageable The pagination and sorting parameters.
+     * @return A PageInfoGenericUtils object containing the paginated content and metadata.
+     */
+    private fun paginateAndSortList(
+        sourceList: List<ProductDomain>,
+        pageable: PaginationUtils
+    ): PageInfoGenericUtils<ProductDomain> {
+
+        // Step 1: Sort the list before paginating
+        val sortedList = sortProducts(sourceList, pageable.sortBy, pageable.direction)
+
+        // Step 2: Calculate pagination indexes
+        // Assumes the page number is zero-based (0, 1, 2...).
+        val fromIndex = pageable.number * pageable.size
+
+        // If the start index is beyond the list size, return an empty page.
+        if (fromIndex >= sortedList.size) {
+            return PageInfoGenericUtils(
+                content = emptyList(),
+                number = pageable.number,
+                size = pageable.size,
+                totalElements = sortedList.size.toLong(),
+                totalPages = calculateTotalPages(sortedList.size, pageable.size)
+            )
+        }
+
+        // Calculate the end index, ensuring it doesn't exceed the list size.
+        val toIndex = (fromIndex + pageable.size).coerceAtMost(sortedList.size)
+
+        // Step 3: Extract the sub-list for the current page.
+        val pageContent = sortedList.subList(fromIndex, toIndex)
+
+        // Step 4: Build and return the pagination object.
+        return PageInfoGenericUtils(
+            content = pageContent,
+            number = pageable.number,
+            size = pageable.size, // The requested size
+            totalElements = sortedList.size.toLong(),
+            totalPages = calculateTotalPages(sortedList.size, pageable.size)
+        )
+    }
+
+
+    /**
+     * Sorts a list of products based on a property name and direction.
+     */
+    private fun sortProducts(
+        productsToSort: List<ProductDomain>,
+        sortBy: String,
+        direction: SortDirectionEnum
+    ): List<ProductDomain> {
+        val comparator = when (sortBy.lowercase()) {
+            "name" -> compareBy(ProductDomain::name)
+            "price" -> compareBy(ProductDomain::price)
+            "rating" -> compareBy(ProductDomain::rating)
+            "brand" -> compareBy(ProductDomain::brand)
+            else -> return productsToSort
+        }
+
+        return if (direction == SortDirectionEnum.DESC) {
+            productsToSort.sortedWith(comparator.reversed())
+        } else {
+            productsToSort.sortedWith(comparator)
+        }
+    }
+
+    /**
+     * Calculates the total number of pages required to display all elements.
+     * This is an efficient way to calculate the ceiling of an integer division.
+     */
+    private fun calculateTotalPages(totalElements: Int, pageSize: Int): Int {
+        if (pageSize == 0) return 0
+        return (totalElements + pageSize - 1) / pageSize
+    }
+}
