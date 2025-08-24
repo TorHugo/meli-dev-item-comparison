@@ -3,25 +3,19 @@ package dev.com.item.compartison.infrastructure.api
 import dev.com.item.compartison.application.usecase.FindAllProductPageableUseCase
 import dev.com.item.compartison.application.usecase.FindProductByIdentifierUseCase
 import dev.com.item.compartison.domain.enums.SortDirectionEnum
-import dev.com.item.compartison.domain.gateway.ProductGateway
 import dev.com.item.compartison.domain.utils.PageInfoGenericUtils
 import dev.com.item.compartison.domain.utils.PaginationUtils
+import dev.com.item.compartison.infrastructure.api.mapper.toResponseDTO
 import dev.com.item.compartison.infrastructure.api.models.response.DefaultResponseDTO
 import dev.com.item.compartison.infrastructure.api.models.response.ProductResponseDTO
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestHeader
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/v1/products")
 class ProductController(
     private val findProductByIdentifierUseCase: FindProductByIdentifierUseCase,
-    private val findAllProductPageableUseCase: FindAllProductPageableUseCase,
-    private val productGateway: ProductGateway
+    private val findAllProductPageableUseCase: FindAllProductPageableUseCase
 ) {
 
     @GetMapping("/find-all")
@@ -39,8 +33,31 @@ class ProductController(
             direction = direction
         )
         val products = findAllProductPageableUseCase.execute(pageable = pageable)
+
+        val response = products.content.map { it.toResponseDTO() }
+
         return DefaultResponseDTO.success(
-            data = products
+            data = PageInfoGenericUtils(
+                content = response,
+                number =  products.number,
+                size =  products.size,
+                totalElements =  products.totalElements,
+                totalPages =  products.totalPages,
+            )
+        )
+    }
+
+    @GetMapping("/{productId}")
+    @ResponseStatus(HttpStatus.OK)
+    fun findByIdentifier(
+        @PathVariable productId: Long
+    ): DefaultResponseDTO<ProductResponseDTO> {
+        val product = findProductByIdentifierUseCase.execute(
+            identifier = productId
+        )
+
+        return DefaultResponseDTO.success(
+            data = product.toResponseDTO()
         )
     }
 }
