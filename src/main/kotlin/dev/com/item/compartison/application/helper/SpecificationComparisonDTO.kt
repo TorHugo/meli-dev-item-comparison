@@ -7,5 +7,5 @@ data class SpecificationComparisonDTO(
     val info: ProductDomain,
     val finalPrice: BigDecimal,
     val value: String,
-    var numericValue: Double? = null
+    var numericValue: Double? = null,
 )

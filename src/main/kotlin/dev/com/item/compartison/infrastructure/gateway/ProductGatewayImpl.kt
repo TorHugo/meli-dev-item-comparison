@@ -45,9 +45,10 @@ class ProductGatewayImpl(
      * **/
     override fun findAllBySpecifications(specification: SpecificationParamHelper): List<ProductDomain> {
         try {
-            var baseFilteredProducts = products.filter {
-                it.category.contains(specification.category, ignoreCase = true)
-            }
+            var baseFilteredProducts =
+                products.filter {
+                    it.category.contains(specification.category, ignoreCase = true)
+                }
 
             specification.brand?.let { brand ->
                 baseFilteredProducts = baseFilteredProducts.filter { it.brand.equals(brand, ignoreCase = true) }

@@ -10,6 +10,5 @@ data class SpecificationParamHelper(
     val discount: Double? = null,
     val minPrice: Double? = null,
     val maxPrice: Double? = null,
-
     /** Outras categorias para filtro. **/
 )

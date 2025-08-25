@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController
 class ProductController(
     private val findProductByIdentifierUseCase: FindProductByIdentifierUseCase,
     private val findAllProductPageableUseCase: FindAllProductPageableUseCase,
-    private val comparisonProductUseCase: ComparisonProductUseCase
+    private val comparisonProductUseCase: ComparisonProductUseCase,
 ) {
     @GetMapping("/find-all")
     @ResponseStatus(HttpStatus.OK)
@@ -86,30 +86,33 @@ class ProductController(
         @RequestParam(name = "name") name: String? = null,
         @RequestParam(name = "discount") discount: Double? = null,
         @RequestParam(name = "minPrice") minPrice: Double? = null,
-        @RequestParam(name = "maxPrice") maxPrice: Double? = null
+        @RequestParam(name = "maxPrice") maxPrice: Double? = null,
     ): DefaultResponseDTO<ComparisonAggregateRoot> {
-        val rule = ComparisonRuleDomain(
-            specificationKey = specificationKey,
-            higherIsBetter = higherIsBetter
-        )
+        val rule =
+            ComparisonRuleDomain(
+                specificationKey = specificationKey,
+                higherIsBetter = higherIsBetter,
+            )
 
-        val specification = SpecificationParamHelper(
-            category = category,
-            name = name,
-            brand = brand,
-            discount = discount,
-            minPrice = minPrice,
-            maxPrice = maxPrice
-        )
+        val specification =
+            SpecificationParamHelper(
+                category = category,
+                name = name,
+                brand = brand,
+                discount = discount,
+                minPrice = minPrice,
+                maxPrice = maxPrice,
+            )
 
-        val result = comparisonProductUseCase.execute(
-            type = type,
-            rule = rule,
-            specification = specification
-        )
+        val result =
+            comparisonProductUseCase.execute(
+                type = type,
+                rule = rule,
+                specification = specification,
+            )
 
         return DefaultResponseDTO.success(
-            data = result
+            data = result,
         )
     }
 }

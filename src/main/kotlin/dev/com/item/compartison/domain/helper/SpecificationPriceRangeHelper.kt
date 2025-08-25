@@ -4,5 +4,5 @@ import java.math.BigDecimal
 
 data class SpecificationPriceRangeHelper(
     val minPrice: BigDecimal,
-    val maxPrice: BigDecimal
+    val maxPrice: BigDecimal,
 )

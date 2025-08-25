@@ -9,10 +9,9 @@ import dev.com.item.compartison.domain.exception.template.IllegalArgumentInterna
 import jakarta.annotation.PostConstruct
 import org.springframework.stereotype.Component
 
-
 @Component
 class ComparisonContext(
-    private val strategyImplementations: List<ComparisonStrategy>
+    private val strategyImplementations: List<ComparisonStrategy>,
 ) {
     private val strategies = mutableMapOf<ComparisonTypeEnum, ComparisonStrategy>()
 
@@ -31,13 +30,18 @@ class ComparisonContext(
      * @return O resultado da comparação.
      * @throws IllegalArgumentInternalException se nenhuma estratégia for encontrada para o tipo.
      */
-    fun execute(type: ComparisonTypeEnum, rule: ComparisonRuleDomain, input: List<ProductDomain>): ComparisonAggregateRoot {
-        val strategy = strategies[type]
-            ?: throw IllegalArgumentInternalException("strategy.not.found")
+    fun execute(
+        type: ComparisonTypeEnum,
+        rule: ComparisonRuleDomain,
+        input: List<ProductDomain>,
+    ): ComparisonAggregateRoot {
+        val strategy =
+            strategies[type]
+                ?: throw IllegalArgumentInternalException("strategy.not.found")
 
         return strategy.compare(
             rule = rule,
-            products = input
+            products = input,
         )
     }
 }

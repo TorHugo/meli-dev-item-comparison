@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class FindAllProductPageableUseCase(
-    private val productGateway: ProductGateway
+    private val productGateway: ProductGateway,
 ) {
     private val logger = LoggerFactory.getLogger(LoadingProductAdapter::class.java)
 

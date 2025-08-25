@@ -5,5 +5,5 @@ import java.math.BigDecimal
 
 data class ComparisonDTO(
     val info: ProductDomain,
-    val finalPrice: BigDecimal
+    val finalPrice: BigDecimal,
 )

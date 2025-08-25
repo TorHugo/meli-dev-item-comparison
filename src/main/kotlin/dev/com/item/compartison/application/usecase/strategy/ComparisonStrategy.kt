@@ -16,5 +16,8 @@ interface ComparisonStrategy {
      * Função responsável por realizar a comparação entre produtos.
      * Com base na estratégia escolhida.
      * **/
-    fun compare(rule: ComparisonRuleDomain, products: List<ProductDomain>): ComparisonAggregateRoot
+    fun compare(
+        rule: ComparisonRuleDomain,
+        products: List<ProductDomain>,
+    ): ComparisonAggregateRoot
 }

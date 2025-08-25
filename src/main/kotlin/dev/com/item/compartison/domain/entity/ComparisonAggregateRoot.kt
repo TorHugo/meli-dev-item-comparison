@@ -10,5 +10,5 @@ data class ComparisonAggregateRoot(
     val ranking: List<ComparisonRankingAg>,
     val details: ComparisonDetailAg?,
     val rule: ComparisonRuleDomain?,
-    val metadata: Map<String, Any>? = mapOf()
+    val metadata: Map<String, Any>? = mapOf(),
 ) : DomainEntity<UUID>()
