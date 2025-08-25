@@ -12,7 +12,7 @@ import java.io.IOException
 
 @Component
 class LoadingProductAdapter(
-    private val objectMapper: ObjectMapper
+    private val objectMapper: ObjectMapper,
 ) {
     private val logger = LoggerFactory.getLogger(LoadingProductAdapter::class.java)
 

@@ -15,7 +15,5 @@ abstract class DomainExceptionHandler protected constructor(
      * The arguments associated with the exception message.
      * Marked as transient to be excluded from serialization.
      */
-    @Transient vararg val args: Any
-) : RuntimeException(message) {
-
-}
+    @Transient vararg val args: Any,
+) : RuntimeException(message)

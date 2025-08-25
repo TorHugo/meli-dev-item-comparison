@@ -2,5 +2,4 @@ package dev.com.item.compartison.domain.exception.template
 
 import dev.com.item.compartison.domain.exception.DomainExceptionHandler
 
-class NotFoundException(message: String) : DomainExceptionHandler(message) {
-}
+class NotFoundException(message: String) : DomainExceptionHandler(message)

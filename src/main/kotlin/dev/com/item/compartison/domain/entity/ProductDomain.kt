@@ -16,9 +16,8 @@ data class ProductDomain(
     val brand: String,
     val availability: Boolean = true,
     /** The discount percentage. e.g., 15.0 for 15% */
-    val discount: Double? = null
+    val discount: Double? = null,
 ) : DomainEntity<Long>() {
-
     companion object {
         private val HUNDRED = BigDecimal(100)
         private const val PRICE_SCALE = 2
@@ -47,8 +46,9 @@ data class ProductDomain(
         }
 
         // Calculate the discount factor (e.g., for a 20% discount, this will be 0.20)
-        val discountFactor = BigDecimal.valueOf(discount!!)
-            .divide(HUNDRED, PRICE_SCALE, RoundingMode.HALF_UP)
+        val discountFactor =
+            BigDecimal.valueOf(discount!!)
+                .divide(HUNDRED, PRICE_SCALE, RoundingMode.HALF_UP)
 
         // Calculate the discount amount
         val discountAmount = price.multiply(discountFactor)

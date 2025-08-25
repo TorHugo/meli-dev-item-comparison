@@ -5,5 +5,5 @@ enum class ErrorTypeEnum {
     FILE_PARSE_ERROR,
     GATEWAY_ERROR,
     GENERIC_ERROR,
-    NOT_FOUND_ERROR
+    NOT_FOUND_ERROR,
 }

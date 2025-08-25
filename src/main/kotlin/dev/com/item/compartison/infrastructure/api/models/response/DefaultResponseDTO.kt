@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter
 data class DefaultResponseDTO<T>(
     val status: Int,
     val data: T,
-    val timestamp: String
+    val timestamp: String,
 ) {
     /**
      * Creates a response with status and data, automatically setting the current timestamp.
@@ -26,7 +26,7 @@ data class DefaultResponseDTO<T>(
     constructor(status: Int, data: T) : this(
         status,
         data,
-        LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+        LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
     )
 
     companion object {

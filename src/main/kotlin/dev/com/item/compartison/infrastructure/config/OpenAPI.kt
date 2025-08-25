@@ -8,14 +8,14 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @OpenAPIDefinition(
-    info = Info(
-        title = "Meli - Item Comparison",
-        version = "1.0",
-        description = "Documentação dos endpoints da API."
-    ),
+    info =
+        Info(
+            title = "Meli - Item Comparison",
+            version = "1.0",
+            description = "Documentação dos endpoints da API.",
+        ),
     tags = [
-        Tag(name = PRODUCT_TAG, description = "Endpoints relacionados a produtos.")
-    ]
+        Tag(name = PRODUCT_TAG, description = "Endpoints relacionados a produtos."),
+    ],
 )
-class OpenAPI {
-}
+class OpenAPI

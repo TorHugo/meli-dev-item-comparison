@@ -6,5 +6,6 @@ import dev.com.item.compartison.domain.utils.PaginationUtils
 
 interface ProductGateway {
     fun findAllByPage(pageable: PaginationUtils): PageInfoGenericUtils<ProductDomain>
+
     fun findByProductId(productId: Long): ProductDomain?
 }

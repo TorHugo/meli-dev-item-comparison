@@ -16,6 +16,6 @@ fun ProductDomain.toResponseDTO(): ProductResponseDTO {
         brand = this.brand,
         availability = this.availability,
         discount = this.discount,
-        finalPrice = this.getFinalPrice()
+        finalPrice = this.getFinalPrice(),
     )
 }

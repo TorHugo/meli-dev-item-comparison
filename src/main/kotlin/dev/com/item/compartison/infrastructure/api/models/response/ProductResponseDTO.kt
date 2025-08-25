@@ -16,5 +16,5 @@ data class ProductResponseDTO(
     val brand: String,
     val availability: Boolean = true,
     val discount: Double? = null,
-    val finalPrice: BigDecimal
+    val finalPrice: BigDecimal,
 )

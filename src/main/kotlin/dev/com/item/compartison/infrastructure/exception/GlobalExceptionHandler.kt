@@ -18,32 +18,33 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class GlobalExceptionHandler(
-    private val messageSource: MessageSource
+    private val messageSource: MessageSource,
 ) {
-
     @ExceptionHandler(GenericException::class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     fun handleGenericException(
         exception: GenericException,
-        request: HttpServletRequest
-    ): DefaultResponseDTO<ExceptionDataDTO>{
-        val message = exception.message?.let {
-            messageSource.getMessage(
-                it,
-                exception.args,
-                LocaleContextHolder.getLocale()
-            )
-        }
+        request: HttpServletRequest,
+    ): DefaultResponseDTO<ExceptionDataDTO> {
+        val message =
+            exception.message?.let {
+                messageSource.getMessage(
+                    it,
+                    exception.args,
+                    LocaleContextHolder.getLocale(),
+                )
+            }
 
-        val data = ExceptionDataDTO(
-            error = ErrorTypeEnum.GENERIC_ERROR.name,
-            message = message,
-            path = request.requestURI
-        )
+        val data =
+            ExceptionDataDTO(
+                error = ErrorTypeEnum.GENERIC_ERROR.name,
+                message = message,
+                path = request.requestURI,
+            )
 
         return DefaultResponseDTO(
             status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
-            data = data
+            data = data,
         )
     }
 
@@ -51,25 +52,27 @@ class GlobalExceptionHandler(
     @ResponseStatus(HttpStatus.CONFLICT)
     fun handleDomainException(
         exception: DomainException,
-        request: HttpServletRequest
-    ): DefaultResponseDTO<ExceptionDataDTO>{
-        val message = exception.message?.let {
-            messageSource.getMessage(
-                it,
-                exception.args,
-                LocaleContextHolder.getLocale()
-            )
-        }
+        request: HttpServletRequest,
+    ): DefaultResponseDTO<ExceptionDataDTO> {
+        val message =
+            exception.message?.let {
+                messageSource.getMessage(
+                    it,
+                    exception.args,
+                    LocaleContextHolder.getLocale(),
+                )
+            }
 
-        val data = ExceptionDataDTO(
-            error = ErrorTypeEnum.DOMAIN_ERROR.name,
-            message = message,
-            path = request.requestURI
-        )
+        val data =
+            ExceptionDataDTO(
+                error = ErrorTypeEnum.DOMAIN_ERROR.name,
+                message = message,
+                path = request.requestURI,
+            )
 
         return DefaultResponseDTO(
             status = HttpStatus.CONFLICT.value(),
-            data = data
+            data = data,
         )
     }
 
@@ -77,25 +80,27 @@ class GlobalExceptionHandler(
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     fun handleFileParseException(
         exception: FileParseException,
-        request: HttpServletRequest
-    ): DefaultResponseDTO<ExceptionDataDTO>{
-        val message = exception.message?.let {
-            messageSource.getMessage(
-                it,
-                exception.args,
-                LocaleContextHolder.getLocale()
-            )
-        }
+        request: HttpServletRequest,
+    ): DefaultResponseDTO<ExceptionDataDTO> {
+        val message =
+            exception.message?.let {
+                messageSource.getMessage(
+                    it,
+                    exception.args,
+                    LocaleContextHolder.getLocale(),
+                )
+            }
 
-        val data = ExceptionDataDTO(
-            error = ErrorTypeEnum.FILE_PARSE_ERROR.name,
-            message = message,
-            path = request.requestURI
-        )
+        val data =
+            ExceptionDataDTO(
+                error = ErrorTypeEnum.FILE_PARSE_ERROR.name,
+                message = message,
+                path = request.requestURI,
+            )
 
         return DefaultResponseDTO(
             status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
-            data = data
+            data = data,
         )
     }
 
@@ -103,25 +108,27 @@ class GlobalExceptionHandler(
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     fun handleGatewayException(
         exception: GatewayException,
-        request: HttpServletRequest
-    ): DefaultResponseDTO<ExceptionDataDTO>{
-        val message = exception.message?.let {
-            messageSource.getMessage(
-                it,
-                exception.args,
-                LocaleContextHolder.getLocale()
-            )
-        }
+        request: HttpServletRequest,
+    ): DefaultResponseDTO<ExceptionDataDTO> {
+        val message =
+            exception.message?.let {
+                messageSource.getMessage(
+                    it,
+                    exception.args,
+                    LocaleContextHolder.getLocale(),
+                )
+            }
 
-        val data = ExceptionDataDTO(
-            error = ErrorTypeEnum.GATEWAY_ERROR.name,
-            message = message,
-            path = request.requestURI
-        )
+        val data =
+            ExceptionDataDTO(
+                error = ErrorTypeEnum.GATEWAY_ERROR.name,
+                message = message,
+                path = request.requestURI,
+            )
 
         return DefaultResponseDTO(
             status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
-            data = data
+            data = data,
         )
     }
 
@@ -129,25 +136,27 @@ class GlobalExceptionHandler(
     @ResponseStatus(HttpStatus.NOT_FOUND)
     fun handleNotFoundException(
         exception: NotFoundException,
-        request: HttpServletRequest
-    ): DefaultResponseDTO<ExceptionDataDTO>{
-        val message = exception.message?.let {
-            messageSource.getMessage(
-                it,
-                exception.args,
-                LocaleContextHolder.getLocale()
-            )
-        }
+        request: HttpServletRequest,
+    ): DefaultResponseDTO<ExceptionDataDTO> {
+        val message =
+            exception.message?.let {
+                messageSource.getMessage(
+                    it,
+                    exception.args,
+                    LocaleContextHolder.getLocale(),
+                )
+            }
 
-        val data = ExceptionDataDTO(
-            error = ErrorTypeEnum.NOT_FOUND_ERROR.name,
-            message = message,
-            path = request.requestURI
-        )
+        val data =
+            ExceptionDataDTO(
+                error = ErrorTypeEnum.NOT_FOUND_ERROR.name,
+                message = message,
+                path = request.requestURI,
+            )
 
         return DefaultResponseDTO(
             status = HttpStatus.NOT_FOUND.value(),
-            data = data
+            data = data,
         )
     }
 }

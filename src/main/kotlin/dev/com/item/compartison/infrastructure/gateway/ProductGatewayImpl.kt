@@ -13,9 +13,8 @@ import org.springframework.stereotype.Component
 
 @Component
 class ProductGatewayImpl(
-    private val loadingProductAdapter: LoadingProductAdapter
-): ProductGateway {
-
+    private val loadingProductAdapter: LoadingProductAdapter,
+) : ProductGateway {
     private var products: List<ProductDomain> = emptyList()
 
     @PostConstruct
@@ -24,7 +23,6 @@ class ProductGatewayImpl(
     }
 
     private val logger = LoggerFactory.getLogger(ProductGatewayImpl::class.java)
-
 
     override fun findAllByPage(pageable: PaginationUtils): PageInfoGenericUtils<ProductDomain> {
         try {
@@ -57,9 +55,8 @@ class ProductGatewayImpl(
      */
     private fun paginateAndSortList(
         sourceList: List<ProductDomain>,
-        pageable: PaginationUtils
+        pageable: PaginationUtils,
     ): PageInfoGenericUtils<ProductDomain> {
-
         val sortedList = sortProducts(sourceList, pageable.sortBy, pageable.direction)
         val fromIndex = pageable.number * pageable.size
 
@@ -70,7 +67,7 @@ class ProductGatewayImpl(
                 number = pageable.number,
                 size = pageable.size,
                 totalElements = sortedList.size.toLong(),
-                totalPages = calculateTotalPages(sortedList.size, pageable.size)
+                totalPages = calculateTotalPages(sortedList.size, pageable.size),
             )
         }
 
@@ -83,10 +80,9 @@ class ProductGatewayImpl(
             number = pageable.number,
             size = pageable.size,
             totalElements = sortedList.size.toLong(),
-            totalPages = calculateTotalPages(sortedList.size, pageable.size)
+            totalPages = calculateTotalPages(sortedList.size, pageable.size),
         )
     }
-
 
     /**
      * Sorts a list of products based on a property name and direction.
@@ -94,15 +90,16 @@ class ProductGatewayImpl(
     private fun sortProducts(
         productsToSort: List<ProductDomain>,
         sortBy: String,
-        direction: SortDirectionEnum
+        direction: SortDirectionEnum,
     ): List<ProductDomain> {
-        val comparator = when (sortBy.lowercase()) {
-            "name" -> compareBy(ProductDomain::name)
-            "price" -> compareBy(ProductDomain::price)
-            "rating" -> compareBy(ProductDomain::rating)
-            "brand" -> compareBy(ProductDomain::brand)
-            else -> return productsToSort
-        }
+        val comparator =
+            when (sortBy.lowercase()) {
+                "name" -> compareBy(ProductDomain::name)
+                "price" -> compareBy(ProductDomain::price)
+                "rating" -> compareBy(ProductDomain::rating)
+                "brand" -> compareBy(ProductDomain::brand)
+                else -> return productsToSort
+            }
 
         return if (direction == SortDirectionEnum.DESC) {
             productsToSort.sortedWith(comparator.reversed())
@@ -115,7 +112,10 @@ class ProductGatewayImpl(
      * Calculates the total number of pages required to display all elements.
      * This is an efficient way to calculate the ceiling of an integer division.
      */
-    private fun calculateTotalPages(totalElements: Int, pageSize: Int): Int {
+    private fun calculateTotalPages(
+        totalElements: Int,
+        pageSize: Int,
+    ): Int {
         if (pageSize == 0) return 0
         return (totalElements + pageSize - 1) / pageSize
     }

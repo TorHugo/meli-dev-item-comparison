@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class FindAllProductPageableUseCase(
-    private val productGateway: ProductGateway
+    private val productGateway: ProductGateway,
 ) {
     private val logger = LoggerFactory.getLogger(LoadingProductAdapter::class.java)
 
@@ -27,16 +27,16 @@ class FindAllProductPageableUseCase(
                     number = pageable.number,
                     size = pageable.size,
                     totalElements = 0,
-                    totalPages = 0
+                    totalPages = 0,
                 )
             }
 
             logger.info("c=FindAllProductPageableUseCase m=execute() s=Done")
             return products
-        } catch (exception: GatewayException){
+        } catch (exception: GatewayException) {
             logger.error("c=FindAllProductPageableUseCase m=execute() s=Error - GatewayException - message=${exception.message}")
             throw GatewayException(exception.message)
-        } catch (exception: Exception){
+        } catch (exception: Exception) {
             logger.error("c=FindAllProductPageableUseCase m=execute() s=Error - Exception - message=${exception.message}")
             throw GenericException("generic.error")
         }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class FindProductByIdentifierUseCase(
-    private val productGateway: ProductGateway
+    private val productGateway: ProductGateway,
 ) {
     private val logger = LoggerFactory.getLogger(LoadingProductAdapter::class.java)
 
@@ -26,14 +26,20 @@ class FindProductByIdentifierUseCase(
 
             logger.info("c=FindProductByIdentifierUseCase m=execute() s=Done identifier=$identifier")
             return product
-        } catch (exception: NotFoundException){
-            logger.error("c=FindProductByIdentifierUseCase m=execute() s=Error - NotFoundException - identifier=$identifier message=${exception.message}")
+        } catch (exception: NotFoundException) {
+            logger.error(
+                "c=FindProductByIdentifierUseCase m=execute() s=Error - NotFoundException - identifier=$identifier message=${exception.message}",
+            )
             throw NotFoundException(message = "domain.error")
-        } catch (exception: GatewayException){
-            logger.error("c=FindProductByIdentifierUseCase m=execute() s=Error - GatewayException - identifier=$identifier message=${exception.message}")
+        } catch (exception: GatewayException) {
+            logger.error(
+                "c=FindProductByIdentifierUseCase m=execute() s=Error - GatewayException - identifier=$identifier message=${exception.message}",
+            )
             throw GatewayException(message = exception.message)
-        } catch (exception: Exception){
-            logger.error("c=FindProductByIdentifierUseCase m=execute() s=Error - Exception - identifier=$identifier message=${exception.message}")
+        } catch (exception: Exception) {
+            logger.error(
+                "c=FindProductByIdentifierUseCase m=execute() s=Error - Exception - identifier=$identifier message=${exception.message}",
+            )
             throw GenericException(message = "generic.error")
         }
     }
