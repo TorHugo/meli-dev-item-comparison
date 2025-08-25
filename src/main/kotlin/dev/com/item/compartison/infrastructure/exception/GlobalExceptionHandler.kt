@@ -5,6 +5,7 @@ import dev.com.item.compartison.domain.exception.template.DomainException
 import dev.com.item.compartison.domain.exception.template.FileParseException
 import dev.com.item.compartison.domain.exception.template.GatewayException
 import dev.com.item.compartison.domain.exception.template.GenericException
+import dev.com.item.compartison.domain.exception.template.IllegalArgumentInternalException
 import dev.com.item.compartison.domain.exception.template.NotFoundException
 import dev.com.item.compartison.infrastructure.api.models.response.DefaultResponseDTO
 import dev.com.item.compartison.infrastructure.api.models.response.ExceptionDataDTO
@@ -122,6 +123,34 @@ class GlobalExceptionHandler(
         val data =
             ExceptionDataDTO(
                 error = ErrorTypeEnum.GATEWAY_ERROR.name,
+                message = message,
+                path = request.requestURI,
+            )
+
+        return DefaultResponseDTO(
+            status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            data = data,
+        )
+    }
+
+    @ExceptionHandler(IllegalArgumentInternalException::class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    fun handleIllegalArgumentInternalException(
+        exception: IllegalArgumentInternalException,
+        request: HttpServletRequest,
+    ): DefaultResponseDTO<ExceptionDataDTO> {
+        val message =
+            exception.message?.let {
+                messageSource.getMessage(
+                    it,
+                    exception.args,
+                    LocaleContextHolder.getLocale(),
+                )
+            }
+
+        val data =
+            ExceptionDataDTO(
+                error = ErrorTypeEnum.ILLEGAL_ARGUMENT_ERROR.name,
                 message = message,
                 path = request.requestURI,
             )

@@ -39,7 +39,7 @@ data class ProductDomain(
      * @return The final price as a [BigDecimal]. If the product is not on sale,
      * returns the original price.
      */
-    fun getFinalPrice(): BigDecimal {
+    fun finalPrice(): BigDecimal {
         // If the product is not on sale, return the original price.
         if (!isOnSale()) {
             return price

@@ -90,7 +90,7 @@
     "specifications": {
       "processador": "Intel Core i7-1360P",
       "memoria": "32GB LPDDR5",
-      "armazenamento": "1TB SSD PCIe Gen 4",
+      "armazenamento": "1000TB SSD PCIe Gen 4",
       "tela": "13.4 polegadas OLED 4K touch",
       "bateria": "Até 12 horas",
       "peso": "1.26 kg"
@@ -110,7 +110,7 @@
     "specifications": {
       "processador": "Intel Core i7-1365U vPro",
       "memoria": "32GB LPDDR5",
-      "armazenamento": "1TB SSD PCIe Gen 4",
+      "armazenamento": "128GB  SSD PCIe Gen 4",
       "tela": "14 polegadas 2.8K OLED touch",
       "bateria": "Até 15 horas",
       "peso": "1.12 kg"

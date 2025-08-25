@@ -22,6 +22,8 @@ server:
 spring:
   application:
     name: dev-item-comparison
+  messages:
+    encoding: UTF-8
 
 ##################
 ### Swagger UI ###

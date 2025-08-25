@@ -4,18 +4,23 @@ import dev.com.item.compartison.domain.entity.ProductDomain
 import dev.com.item.compartison.domain.enums.SortDirectionEnum
 import dev.com.item.compartison.domain.exception.template.GatewayException
 import dev.com.item.compartison.domain.gateway.ProductGateway
+import dev.com.item.compartison.domain.helper.SpecificationParamHelper
 import dev.com.item.compartison.domain.utils.PageInfoGenericUtils
 import dev.com.item.compartison.domain.utils.PaginationUtils
 import dev.com.item.compartison.infrastructure.adapter.LoadingProductAdapter
 import jakarta.annotation.PostConstruct
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
+import java.math.BigDecimal
 
 @Component
 class ProductGatewayImpl(
     private val loadingProductAdapter: LoadingProductAdapter,
 ) : ProductGateway {
-    private var products: List<ProductDomain> = emptyList()
+    companion object {
+        private var products: List<ProductDomain> = emptyList()
+        private const val GATEWAY_ERROR: String = "gateway.error"
+    }
 
     @PostConstruct
     fun load() {
@@ -28,9 +33,46 @@ class ProductGatewayImpl(
         try {
             return paginateAndSortList(products, pageable)
         } catch (exception: Exception) {
-            // Adicionar a exceção ao log ajuda na depuração.
             logger.error("c=ProductGatewayImpl m=findAllByPage() s=Exception message=${exception.message}", exception)
-            throw GatewayException("gateway.error")
+            throw GatewayException(GATEWAY_ERROR)
+        }
+    }
+
+    /**
+     * Obs.: Essa responsabilidade ficaria exclusivamente no database.
+     * No caso, idealmente não seria necessário "reconstruir" a lista de `baseFilteredProducts` várias vezes.
+     *
+     * **/
+    override fun findAllBySpecifications(specification: SpecificationParamHelper): List<ProductDomain> {
+        try {
+            var baseFilteredProducts = products.filter {
+                it.category.contains(specification.category)
+            }
+
+            specification.brand?.let { brand ->
+                baseFilteredProducts = baseFilteredProducts.filter { it.brand == brand }
+            }
+
+            specification.name?.let { name ->
+                baseFilteredProducts = baseFilteredProducts.filter { it.name == name }
+            }
+
+            specification.discount?.let { discount ->
+                baseFilteredProducts = baseFilteredProducts.filter { it.discount!! >= discount }
+            }
+
+            specification.minPrice?.let { minPrice ->
+                baseFilteredProducts = baseFilteredProducts.filter { it.price >= BigDecimal.valueOf(minPrice) }
+            }
+
+            specification.maxPrice?.let { maxPrice ->
+                baseFilteredProducts = baseFilteredProducts.filter { it.price <= BigDecimal.valueOf(maxPrice) }
+            }
+
+            return baseFilteredProducts
+        } catch (exception: Exception) {
+            logger.error("c=ProductGatewayImpl m=findAllByPage() s=Exception message=${exception.message}", exception)
+            throw GatewayException(GATEWAY_ERROR)
         }
     }
 
@@ -40,7 +82,7 @@ class ProductGatewayImpl(
         } catch (exception: Exception) {
             // Adicionar a exceção ao log ajuda na depuração.
             logger.error("c=ProductGatewayImpl m=findByProductId() s=Exception message=${exception.message}", exception)
-            throw GatewayException("gateway.error")
+            throw GatewayException(GATEWAY_ERROR)
         }
     }
 
