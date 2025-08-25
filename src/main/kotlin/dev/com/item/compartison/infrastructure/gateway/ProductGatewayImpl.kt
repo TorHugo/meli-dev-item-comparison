@@ -60,11 +60,7 @@ class ProductGatewayImpl(
         pageable: PaginationUtils
     ): PageInfoGenericUtils<ProductDomain> {
 
-        // Step 1: Sort the list before paginating
         val sortedList = sortProducts(sourceList, pageable.sortBy, pageable.direction)
-
-        // Step 2: Calculate pagination indexes
-        // Assumes the page number is zero-based (0, 1, 2...).
         val fromIndex = pageable.number * pageable.size
 
         // If the start index is beyond the list size, return an empty page.
@@ -81,14 +77,11 @@ class ProductGatewayImpl(
         // Calculate the end index, ensuring it doesn't exceed the list size.
         val toIndex = (fromIndex + pageable.size).coerceAtMost(sortedList.size)
 
-        // Step 3: Extract the sub-list for the current page.
         val pageContent = sortedList.subList(fromIndex, toIndex)
-
-        // Step 4: Build and return the pagination object.
         return PageInfoGenericUtils(
             content = pageContent,
             number = pageable.number,
-            size = pageable.size, // The requested size
+            size = pageable.size,
             totalElements = sortedList.size.toLong(),
             totalPages = calculateTotalPages(sortedList.size, pageable.size)
         )

@@ -4,7 +4,7 @@ import dev.com.item.compartison.domain.utils.DomainEntity
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-class ProductDomain(
+data class ProductDomain(
     override val identifier: Long,
     val name: String,
     val description: String,

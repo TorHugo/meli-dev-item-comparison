@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component
 import java.io.IOException
 
 @Component
-class LoadingProductAdapter {
+class LoadingProductAdapter(
+    private val objectMapper: ObjectMapper
+) {
     private val logger = LoggerFactory.getLogger(LoadingProductAdapter::class.java)
-    private val objectMapper = ObjectMapper()
 
     fun load(): List<ProductDomain> {
         try {

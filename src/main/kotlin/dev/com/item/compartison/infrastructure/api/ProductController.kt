@@ -22,7 +22,7 @@ class ProductController(
     @ResponseStatus(HttpStatus.OK)
     fun findAllProducts(
         @RequestParam(defaultValue = "0") page: Int,
-        @RequestParam(defaultValue = "0") size: Int,
+        @RequestParam(defaultValue = "1") size: Int,
         @RequestParam(defaultValue = "identifier") sortBy: String,
         @RequestParam(defaultValue = "ASC") direction: SortDirectionEnum,
     ): DefaultResponseDTO<PageInfoGenericUtils<ProductResponseDTO>> {
