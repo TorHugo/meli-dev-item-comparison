@@ -90,7 +90,7 @@
     "specifications": {
       "processador": "Intel Core i7-1360P",
       "memoria": "32GB LPDDR5",
-      "armazenamento": "1000TB SSD PCIe Gen 4",
+      "armazenamento": "1000 GB SSD PCIe Gen 4",
       "tela": "13.4 polegadas OLED 4K touch",
       "bateria": "Até 12 horas",
       "peso": "1.26 kg"
@@ -110,7 +110,7 @@
     "specifications": {
       "processador": "Intel Core i7-1365U vPro",
       "memoria": "32GB LPDDR5",
-      "armazenamento": "128GB  SSD PCIe Gen 4",
+      "armazenamento": "1000 GB SSD PCIe Gen 4",
       "tela": "14 polegadas 2.8K OLED touch",
       "bateria": "Até 15 horas",
       "peso": "1.12 kg"
@@ -158,5 +158,233 @@
     "brand": "Apple",
     "availability": true,
     "discount": null
+  },
+  {
+    "identifier": 9,
+    "name": "Apple Watch Ultra 2",
+    "description": "O relógio Apple mais robusto e versátil, com GPS de precisão e até 36h de bateria.",
+    "price": 6499.00,
+    "imageUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/apple-watch-ultra-2-hero.jpeg",
+    "category": "Smartwatches",
+    "rating": 4.9,
+    "specifications": {
+      "tela": "49mm Retina LTPO OLED",
+      "bateria": "Até 36 horas",
+      "conectividade": "Celular + GPS",
+      "sensores": "ECG, Oxigênio no sangue, Temperatura",
+      "resistencia": "100m (à prova d'água)"
+    },
+    "brand": "Apple",
+    "availability": true,
+    "discount": 5.0
+  },
+  {
+    "identifier": 10,
+    "name": "Samsung Galaxy Watch 6 Classic",
+    "description": "Design clássico com coroa giratória, monitoramento de saúde completo e Wear OS.",
+    "price": 2499.00,
+    "imageUrl": "https://images.samsung.com/br/galaxy-watch6-classic/feature/galaxy-watch6-classic-kv.jpg",
+    "category": "Smartwatches",
+    "rating": 4.7,
+    "specifications": {
+      "tela": "1.5 polegadas Super AMOLED",
+      "bateria": "Até 40 horas",
+      "conectividade": "LTE + GPS + NFC",
+      "sensores": "BioActive (ECG, Pressão, Composição Corporal)",
+      "material": "Aço inoxidável"
+    },
+    "brand": "Samsung",
+    "availability": true,
+    "discount": 18.0
+  },
+  {
+    "identifier": 11,
+    "name": "iPad Pro M4",
+    "description": "O iPad mais avançado com o poder do chip M4, tela Ultra Retina XDR e design fino.",
+    "price": 12299.00,
+    "imageUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-13-m4.jpeg",
+    "category": "Tablets",
+    "rating": 4.9,
+    "specifications": {
+      "tela": "13 polegadas Ultra Retina XDR com ProMotion",
+      "processador": "Apple M4",
+      "armazenamento": "256GB SSD",
+      "camera": "12MP grande-angular com scanner LiDAR",
+      "conectividade": "Wi-Fi 6E"
+    },
+    "brand": "Apple",
+    "availability": true,
+    "discount": null
+  },
+  {
+    "identifier": 12,
+    "name": "Samsung Galaxy Tab S9 Ultra",
+    "description": "Tablet com tela imersiva de 14.6 polegadas, performance extrema com Snapdragon e S Pen inclusa.",
+    "price": 6999.99,
+    "imageUrl": "https://images.samsung.com/br/galaxy-tab-s9/feature/galaxy-tab-s9-s9plus-s9ultra-highlights.jpg",
+    "category": "Tablets",
+    "rating": 4.8,
+    "specifications": {
+      "tela": "14.6 polegadas Dynamic AMOLED 2X",
+      "processador": "Snapdragon 8 Gen 2 for Galaxy",
+      "armazenamento": "512GB",
+      "memoria": "12GB RAM",
+      "bateria": "11200mAh"
+    },
+    "brand": "Samsung",
+    "availability": true,
+    "discount": 10.0
+  },
+  {
+    "identifier": 13,
+    "name": "Smart TV LG OLED evo C3 55\"",
+    "description": "TV com pixels que se autoiluminam para preto puro, cores perfeitas e processador a9 AI Gen6.",
+    "price": 5899.00,
+    "imageUrl": "https://www.lg.com/br/images/tvs/md07551068/gallery/D-1.jpg",
+    "category": "TVs",
+    "rating": 4.9,
+    "specifications": {
+      "tela": "55 polegadas OLED evo",
+      "resolucao": "4K UHD",
+      "taxa_de_atualizacao": "120Hz",
+      "sistema": "webOS 23",
+      "recursos": "Dolby Vision, Dolby Atmos, G-Sync"
+    },
+    "brand": "LG",
+    "availability": true,
+    "discount": 22.0
+  },
+  {
+    "identifier": 14,
+    "name": "PlayStation 5 Slim",
+    "description": "Console de nova geração com SSD ultrarrápido, áudio 3D e gatilhos adaptáveis.",
+    "price": 3799.99,
+    "imageUrl": "https://gmedia.playstation.com/is/image/sierialto/ps5-slim-disc-drive-console-product-shot",
+    "category": "Consoles",
+    "rating": 4.9,
+    "specifications": {
+      "CPU": "x86-64-AMD Ryzen Zen 2",
+      "GPU": "AMD Radeon RDNA 2",
+      "armazenamento": "1TB SSD",
+      "midia": "Blu-Ray 4K UHD",
+      "resolucao_max": "8K"
+    },
+    "brand": "Sony",
+    "availability": true,
+    "discount": null
+  },
+  {
+    "identifier": 15,
+    "name": "Nintendo Switch OLED",
+    "description": "Console híbrido com tela OLED vibrante de 7 polegadas e suporte ajustável.",
+    "price": 2199.00,
+    "imageUrl": "https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_1.0/c_scale,w_1200/ncom/en_US/switch/site-design/oled-model-splatoon-3-special-edition.png",
+    "category": "Consoles",
+    "rating": 4.7,
+    "specifications": {
+      "tela": "7 polegadas OLED",
+      "armazenamento": "64GB interno",
+      "conectividade": "Wi-Fi, Bluetooth 4.1, Porta LAN (na dock)",
+      "modos_de_jogo": "TV, semi-portátil, portátil",
+      "bateria": "4.5 - 9 horas"
+    },
+    "brand": "Nintendo",
+    "availability": true,
+    "discount": 10.0
+  },
+  {
+    "identifier": 16,
+    "name": "Câmera Sony Alpha a7 IV",
+    "description": "Câmera mirrorless full-frame com sensor de 33MP, gravação de vídeo 4K 60p e foco automático em tempo real.",
+    "price": 15500.00,
+    "imageUrl": "https://sony.scene7.com/is/image/sonyglobalsolutions/a7-iv_Primary_image",
+    "category": "Câmeras",
+    "rating": 4.9,
+    "specifications": {
+      "sensor": "Full-Frame Exmor R CMOS 33MP",
+      "video": "4K 60p 10-bit",
+      "ISO": "100-51200",
+      "pontos_foco": "759 pontos",
+      "estabilizacao": "5 eixos no corpo"
+    },
+    "brand": "Sony",
+    "availability": true,
+    "discount": null
+  },
+  {
+    "identifier": 17,
+    "name": "GoPro HERO12 Black",
+    "description": "Câmera de ação com qualidade de imagem 5.3K60, estabilização HyperSmooth 6.0 e bateria aprimorada.",
+    "price": 2599.00,
+    "imageUrl": "https://images.gopro.com/image/upload/f_auto,q_auto,fl_progressive/v1693414999/sites/gopro/products/hero12-black/hero12-black-compare-main.png",
+    "category": "Câmeras",
+    "rating": 4.7,
+    "specifications": {
+      "video": "5.3K60 / 4K120",
+      "foto": "27MP",
+      "estabilizacao": "HyperSmooth 6.0",
+      "resistencia": "À prova d'água até 10m",
+      "bateria": "Enduro"
+    },
+    "brand": "GoPro",
+    "availability": true,
+    "discount": 15.0
+  },
+  {
+    "identifier": 18,
+    "name": "JBL Boombox 3",
+    "description": "Caixa de som Bluetooth portátil com som massivo, graves profundos e 24h de bateria.",
+    "price": 2299.00,
+    "imageUrl": "https://www.jbl.com.br/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-master-catalog_harman/default/dw1e96711c/JBL_Boombox_3_Hero_Black_21421_x1.png",
+    "category": "Audio",
+    "rating": 4.8,
+    "specifications": {
+      "potencia": "80W RMS (AC mode)",
+      "bateria": "24 horas de reprodução",
+      "conectividade": "Bluetooth 5.3",
+      "resistencia": "IP67 (à prova d'água e poeira)",
+      "recursos": "JBL PartyBoost"
+    },
+    "brand": "JBL",
+    "availability": true,
+    "discount": 25.0
+  },
+  {
+    "identifier": 19,
+    "name": "Drone DJI Mini 4 Pro",
+    "description": "Mini drone com câmera 4K HDR, detecção de obstáculos omnidirecional e tempo de voo estendido.",
+    "price": 5499.00,
+    "imageUrl": "https://dji-official-fe.djicdn.com/dps/e350550f28a715a0c3b313f8899852f6.png",
+    "category": "Drones",
+    "rating": 4.9,
+    "specifications": {
+      "camera": "48MP com vídeo 4K/60fps HDR",
+      "tempo_de_voo": "Até 34 minutos",
+      "alcance": "20 km (FCC)",
+      "peso": "249g",
+      "sensores": "Detecção omnidirecional"
+    },
+    "brand": "DJI",
+    "availability": true,
+    "discount": null
+  },
+  {
+    "identifier": 20,
+    "name": "Amazon Echo Dot 5ª Geração",
+    "description": "Smart speaker com Alexa, som de alta definição e sensor de temperatura integrado.",
+    "price": 349.00,
+    "imageUrl": "https://m.media-amazon.com/images/I/71Q3zx6uO5L._AC_SX466_.jpg",
+    "category": "Smart Home",
+    "rating": 4.8,
+    "specifications": {
+      "assistente": "Alexa",
+      "audio": "Driver de 1.73 polegadas",
+      "conectividade": "Wi-Fi, Bluetooth",
+      "recursos": "Sensor de temperatura, controles de privacidade",
+      "compatibilidade": "Zigbee, Matter"
+    },
+    "brand": "Amazon",
+    "availability": true,
+    "discount": 10.0
   }
 ]
