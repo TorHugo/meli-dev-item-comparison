@@ -46,15 +46,15 @@ class ProductGatewayImpl(
     override fun findAllBySpecifications(specification: SpecificationParamHelper): List<ProductDomain> {
         try {
             var baseFilteredProducts = products.filter {
-                it.category.contains(specification.category)
+                it.category.contains(specification.category, ignoreCase = true)
             }
 
             specification.brand?.let { brand ->
-                baseFilteredProducts = baseFilteredProducts.filter { it.brand == brand }
+                baseFilteredProducts = baseFilteredProducts.filter { it.brand.equals(brand, ignoreCase = true) }
             }
 
             specification.name?.let { name ->
-                baseFilteredProducts = baseFilteredProducts.filter { it.name == name }
+                baseFilteredProducts = baseFilteredProducts.filter { it.name.equals(name, ignoreCase = true) }
             }
 
             specification.discount?.let { discount ->
