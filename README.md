@@ -13,43 +13,50 @@
 
 ### Estrutura do Projeto
 ``
-└───src
-    ├───main
-    │   ├───kotlin
-    │   │   └───dev
-    │   │       └───com
-    │   │           └───item
-    │   │               └───compartison
-    │   │                   ├───application
-    │   │                   │   ├───helper
-    │   │                   │   ├───usecase
-    │   │                   │   │   ├───context
-    │   │                   │   │   └───strategy
-    │   │                   │   └───utils
-    │   │                   ├───domain
-    │   │                   │   ├───entity
-    │   │                   │   ├───enums
-    │   │                   │   ├───exception
-    │   │                   │   │   └───template
-    │   │                   │   ├───gateway
-    │   │                   │   ├───helper
-    │   │                   │   ├───objects
-    │   │                   │   ├───service
-    │   │                   │   └───utils
-    │   │                   └───infrastructure
-    │   │                       ├───adapter
-    │   │                       ├───api
-    │   │                       │   ├───mapper
-    │   │                       │   └───models
-    │   │                       │       ├───request
-    │   │                       │       └───response
-    │   │                       ├───config
-    │   │                       ├───exception
-    │   │                       ├───gateway
-    │   │                       ├───service
-    │   │                       └───utils
-    │   └───resources
-    │       └───data
+.
+├── .gitignore
+├── build.gradle
+├── gradlew
+├── gradlew.bat
+├── README.md
+├── settings.gradle
+└── src
+    └── main
+        ├── kotlin
+        │   └── dev
+        │       └── com
+        │           └── item
+        │               └── compartison
+        │                   ├── application
+        │                   │   ├── helper
+        │                   │   ├── usecase
+        │                   │   │   ├── context
+        │                   │   │   └── strategy
+        │                   │   └── utils
+        │                   ├── domain
+        │                   │   ├── entity
+        │                   │   ├── enums
+        │                   │   ├── exception
+        │                   │   │   └── template
+        │                   │   ├── gateway
+        │                   │   ├── helper
+        │                   │   ├── objects
+        │                   │   ├── service
+        │                   │   └── utils
+        │                   └── infrastructure
+        │                       ├── adapter
+        │                       ├── api
+        │                       │   ├── mapper
+        │                       │   └── models
+        │                       │       ├── request
+        │                       │       └── response
+        │                       ├── config
+        │                       ├── exception
+        │                       ├── gateway
+        │                       ├── service
+        │                       └── utils
+        └── resources
+            └── data
 ``
 
 ### Documentation & strategic overview
