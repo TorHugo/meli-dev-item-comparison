@@ -77,7 +77,7 @@
     ````
     - Comparação dos produtos com base em critérios solicitados.
     ````http request
-      GET /api/v1/products/comparison
+    GET /api/v1/products/comparison
     ````
 
 - Os dois primeiros, não temos muito segredo. Simulamos a recuperação de alguns produtos do banco de dados, porém, na verdade são recuperados de um arquivo ``.json`` como solicitado. A ideia é que o primeiro traga todos os produtos "cadastrados" no datasource, e o segundo, traga um produto exclusivo com base no seu identificador no datasource.
