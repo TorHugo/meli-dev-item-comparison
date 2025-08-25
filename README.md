@@ -12,7 +12,7 @@
 **SpringBoot** ``v3.5.5``<br>
 
 ### Estrutura do Projeto
-``
+```cmd
 .
 ├── .gitignore
 ├── build.gradle
@@ -57,7 +57,7 @@
         │                       └── utils
         └── resources
             └── data
-``
+```
 
 ### Documentation & strategic overview
 #### Design da API
